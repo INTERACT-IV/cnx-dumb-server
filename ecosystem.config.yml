@@ -1,0 +1,14 @@
+apps :
+  - exec_mode: 'fork'
+    name: 'cnx-dumb-server'
+    script: 'index.js'
+    instances: 1
+    autorestart: true
+    ignore_watch: 
+      - '.git'
+      - 'node_modules'
+    listen_timeout: 10000
+    wait_ready: true
+    watch: true
+    env:
+      NODE_ENV: 'development'

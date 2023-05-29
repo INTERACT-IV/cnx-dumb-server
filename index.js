@@ -14,7 +14,12 @@ import Config from './config/config.json' assert { type: 'json' }
 import { Webhook, Test, TTS } from './routes.js'
 
 const { host, logs, port } = Config,
-      { HOST, PORT } = process.env,
+      {
+        HOST,
+        npm_package_name,
+        npm_package_version,
+        PORT
+      } = process.env,
       Port = PORT || port,
       Host = HOST || host,
       dumb = express()
@@ -49,8 +54,22 @@ dumb.use(( req, res, next ) => {
 // dumb.use( '/tts', TTS(logger) )
 dumb.use( '/', Webhook( logger ))
 
+
+dumb.get( '/about', ( req, res ) => {
+  return res.status( 200 ).json({
+    npm_package_name,
+    npm_package_version,
+    status: 'success'
+  })
+})
+
 dumb.listen( port, () => {
   log.notice( `${ chalk.green( '✓' )} Dumb Server started on http://${ Host }:${ Port }.` )
   console.log( `${ chalk.green( '✓' )} Dumb Server started on http://${ Host }:${ Port }.` )
+  process.send( 'ready' )
 })
 
+process.on( 'SIGINT', () => {
+  console.log( `Terminating application.` )
+  process.exit( 0 );
+})

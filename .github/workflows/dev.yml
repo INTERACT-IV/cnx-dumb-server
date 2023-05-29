@@ -1,0 +1,24 @@
+name: dev
+run-name: ${{ github.actor }} build ${{ github.repository }}
+permissions:
+  contents: write
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - dev-**
+
+jobs:
+  build:
+    runs-on: [ self-hosted, linux, x64, softeam ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run watch
+      - name: Check package version
+        run: curl localhost:8100/about | jq '.npm_package_version' -r
