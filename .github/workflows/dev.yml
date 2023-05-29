@@ -26,5 +26,7 @@ jobs:
         run: npm i
       - name: Launch application
         run: npm run watch
+      - name: PM2 logs
+        run: pm2 logs cnx-dumb-server
       - name: Check package version
         run: curl localhost:8100/about | jq '.npm_package_version' -r
