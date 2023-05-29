@@ -1,9 +1,9 @@
 import Fetch from 'cross-fetch'
 import Path from 'path'
-import { logger } from '../index'
+// import { logger } from '../index.js'
 
-import * as Config from '../config/config.json'
-import { csvToJSON } from '../utils/toolkit'
+import * as Config from '../config/config.json' assert { type: 'json' }
+import { csvToJSON } from '../utils/toolkit.js'
 
 const { target } = Config
 

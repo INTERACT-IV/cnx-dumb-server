@@ -3,7 +3,6 @@ module.exports = {
     exec_mode: 'fork',
     name: 'cnx-dumb-server',
     script: 'index.js',
-    interpreter: './node_modules/.bin/babel-node',
     instances: 1,
     autorestart: true,
     max_memory_restart: '1G',
