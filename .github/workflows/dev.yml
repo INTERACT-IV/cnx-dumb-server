@@ -22,6 +22,8 @@ jobs:
         run: npm i -g pm2
       - name: Copy .env file
         run: cp .env.sample .env
+      - name: Copy config file
+        run: cp config/config.sample.json  config/config.json
       - name: Install application dependencies
         run: npm i
       - name: Launch application
