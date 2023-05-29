@@ -1,6 +1,10 @@
 {
   "endpoints": "Your provider's endpoint",
-  "host": "Your host address",
+  "host": "0.0.0.0",
+  "logs": {
+    "level": "DEBUG",
+    "path": "logs"
+  },
   "mysql_admin": {
     "host": "MySQLServer",
     "user": "MySQLUser",
@@ -13,7 +17,7 @@
     "password": "MySQLUserPassword",
     "database": "CDR Database used"
   },
-  "port": "Your host port",
+  "port": "8100",
   "productToken": "Your Product Token",
   "proxy": "Proxy address",
   "webhook": "Your webhook url"
