@@ -18,7 +18,10 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
-      - run: npm ci
+      - name: Install PM2 globally
+        run: npm i -g pm2
+      - name: Install application dependencies
+        run: npm ci
       - run: npm run watch
       - name: Check package version
         run: curl localhost:8100/about | jq '.npm_package_version' -r
