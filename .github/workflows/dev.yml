@@ -20,8 +20,11 @@ jobs:
           cache: 'npm'
       - name: Install PM2 globally
         run: npm i -g pm2
+      - name: Copy .env file
+        run: cp .env.sample .env
       - name: Install application dependencies
-        run: npm ci
-      - run: npm run watch
+        run: npm i
+      - name: Launch application
+        run: npm run watch
       - name: Check package version
         run: curl localhost:8100/about | jq '.npm_package_version' -r
